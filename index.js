@@ -2,6 +2,7 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -30,6 +31,13 @@ app.put('/api/product/:productId', (req, res)=>{
 
 app.delete('/api/product/:productId', (req, res)=>{
 
+})
+
+mongoose.connect('mongodb://localhost:27017/shop', (err, res)=>{
+	if (err){
+		return console.log(`Error al conectar a la base de datos: ${err}`)
+	}
+	console.log(`API REST corriendo en http://localhost:${port}`)
 })
 
 app.listen(port, ()=>{
